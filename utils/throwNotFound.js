@@ -1,6 +1,6 @@
 const { NotFound } = require("http-errors");
 
-const throwNotFound = id => {
+const throwNotFound = (id = "") => {
   throw new NotFound(`Contact with id=${id} not found`);
 };
 

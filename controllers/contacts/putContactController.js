@@ -1,6 +1,6 @@
 const { Contact } = require("../../models");
 const successRes = require("../../utils/successRes");
-const throwNotFound = require("./throwNotFound");
+const throwNotFound = require("../../utils/throwNotFound");
 
 async function putContactController(req, res, next) {
   try {
