@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const { Unauthorized } = require("http-errors");
+const { Unauthorized, Forbidden } = require("http-errors");
 const { User } = require("../../models");
 
 const { SECRET_KEY } = process.env;
@@ -9,6 +9,10 @@ async function login(req, res, next) {
     const { email, password } = req.body;
 
     const user = await User.findOne({ email });
+
+    if (!user.verify) {
+      throw new Forbidden("Confirm your email address");
+    }
 
     if (!user || !user.comparePasswords(password)) {
       throw new Unauthorized("Email or password is wrong");
